@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World Netflix Stats Dashboard</title>
+</head>
+<body>
+  <h1>Insights into Netflix Data by Adam</h1>
+  <div id="stats"></div>
+
+  <script>
+    fetch('http://localhost:3000/stats')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('stats').innerHTML = `
+          <p><strong>Total Entries:</strong> ${data.total_entries}</p>
+          <p><strong>Type Counts:</strong> ${JSON.stringify(data.type_counts)}</p>
+          <p><strong>Top Countries:</strong> ${JSON.stringify(data.top_countries)}</p>
+          <p><strong>Top Genres:</strong> ${JSON.stringify(data.top_genres)}</p>
+          <p><strong>Release Year Distribution:</strong> ${JSON.stringify(data.release_year_distribution)}</p>
+        `;
+      });
+  </script>
+</body>
+</html>
